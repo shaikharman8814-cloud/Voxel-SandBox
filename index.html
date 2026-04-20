@@ -299,7 +299,7 @@
     // --- Player Physics ---
     const playerBody = new CANNON.Body({
       mass: 1, shape: new CANNON.Box(new CANNON.Vec3(0.3, 0.9, 0.3)),
-      position: new CANNON.Vec3(0, 10, 0), fixedRotation: true, linearDamping: 0.9, allowSleep: false
+      position: new CANNON.Vec3(0, 10, 0), fixedRotation: true, linearDamping: 0.5, allowSleep: false
     });
     world.addBody(playerBody);
 
@@ -625,15 +625,15 @@
         lastSpaceTime = now;
         if (!isFlying) {
            if (Math.abs(playerBody.velocity.y) < 0.1 || isUnderwater) {
-             playerBody.velocity.y = 8; canDoubleJump = true;
+             playerBody.velocity.y = 10; canDoubleJump = true;
            } else if (canDoubleJump) {
-             playerBody.velocity.y = 8; canDoubleJump = false; playThud(0.2);
+             playerBody.velocity.y = 10; canDoubleJump = false; playThud(0.2);
            }
         }
       }
       if (e.code === 'KeyQ') {
          const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion); forward.y = 0; forward.normalize();
-         playerBody.velocity.x = forward.x * 25; playerBody.velocity.z = forward.z * 25;
+         playerBody.velocity.x = forward.x * 80; playerBody.velocity.z = forward.z * 80;
          playThud(0.4); camera.fov += 15; camera.updateProjectionMatrix();
       }
       if (e.code === 'KeyE') {
@@ -971,17 +971,17 @@
           const mag = Math.sqrt(moveX*moveX + moveZ*moveZ);
           if (mag > 0) { moveX /= mag; moveZ /= mag; }
           
-          let speedMulti = isUnderwater ? 4 : (isFlying ? 30 : 10);
+          let speedMulti = isUnderwater ? 4 : (isFlying ? 30 : 25);
           let targetFov = document.getElementById('fovSlider') ? parseFloat(document.getElementById('fovSlider').value) : 75;
-          if (keys['ShiftLeft'] && !isFlying && !isUnderwater) { speedMulti = 16; targetFov += 10; } // Sprint
+          if (keys['ShiftLeft'] && !isFlying && !isUnderwater) { speedMulti = 40; targetFov += 15; } // Sprint
           
           camera.fov += (targetFov - camera.fov) * 0.1;
           camera.updateProjectionMatrix();
 
           const targetVelX = moveX * speedMulti;
           const targetVelZ = moveZ * speedMulti;
-          playerBody.velocity.x = THREE.MathUtils.lerp(playerBody.velocity.x, targetVelX, 0.2);
-          playerBody.velocity.z = THREE.MathUtils.lerp(playerBody.velocity.z, targetVelZ, 0.2);
+          playerBody.velocity.x = THREE.MathUtils.lerp(playerBody.velocity.x, targetVelX, 0.3);
+          playerBody.velocity.z = THREE.MathUtils.lerp(playerBody.velocity.z, targetVelZ, 0.3);
           const isMoving = mag > 0;
           
           const inAir = Math.abs(playerBody.velocity.y) > 0.1 && !isUnderwater;
@@ -1047,7 +1047,7 @@
           const speed = isMoving ? 1 : 0;
           if (speed > 0) {
             const oldPhase = Math.floor(walkTime / Math.PI);
-            walkTime += dt * 10;
+            walkTime += dt * 22;
             if (Math.floor(walkTime / Math.PI) > oldPhase && !inAir) playStep();
           }
           
