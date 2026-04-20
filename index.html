@@ -1184,8 +1184,12 @@
       s.appendChild(icon); hotbar.appendChild(s);
     });
 
-    controls.addEventListener('lock', () => { document.getElementById('overlay').style.display = 'none'; });
+    controls.addEventListener('lock', () => { 
+      document.getElementById('overlay').style.display = 'none'; 
+      document.getElementById('inventoryUI').style.display = 'none';
+    });
     controls.addEventListener('unlock', () => { 
+      if (document.getElementById('inventoryUI').style.display === 'flex') return;
       document.getElementById('overlay').style.display = 'flex'; 
       document.getElementById('timeSlider').value = (dayTime * 24) % 24;
       document.getElementById('fovSlider').value = camera.fov;
