@@ -1,0 +1,12 @@
+vite v5.4.21 building for production...
+transforming...
+✓ 2 modules transformed.
+x Build failed in 149ms
+error during build:
+[vite:build-import-analysis] [plugin vite:build-import-analysis] index.html?html-proxy&index=1.js: Failed to parse source for import analysis because the content contains invalid JS syntax. You may need to install appropriate plugins to handle the .js file format, or if it's an asset, add "**/*.js" to `assetsInclude` in your configuration.
+file: /Users/shaikharman/Documents/New project/voxel-sandbox-project/index.html?html-proxy&index=1.js
+    at getRollupError (file:///Users/shaikharman/Documents/New%20project/voxel-sandbox-project/node_modules/rollup/dist/es/shared/parseAst.js:406:41)
+    at error (file:///Users/shaikharman/Documents/New%20project/voxel-sandbox-project/node_modules/rollup/dist/es/shared/parseAst.js:402:42)
+    at Object.error (file:///Users/shaikharman/Documents/New%20project/voxel-sandbox-project/node_modules/rollup/dist/es/shared/node-entry.js:22645:20)
+    at Object.error (file:///Users/shaikharman/Documents/New%20project/voxel-sandbox-project/node_modules/rollup/dist/es/shared/node-entry.js:21686:42)
+    at Object.transform (file:///Users/shaikharman/Documents/New%20project/voxel-sandbox-project/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:64913:14)
