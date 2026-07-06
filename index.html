@@ -163,7 +163,7 @@
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
       osc.type = 'triangle';
-      osc.frequency.setValueAtTime(100, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(100,audioCtx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
       gain.gain.setValueAtTime(vol, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
@@ -237,8 +237,8 @@
       const ctx = canvas.getContext("2d");
       ctx.fillStyle = colorHex;
       ctx.fillRect(0,0,16,16);
-      for(let x=0; x<16; x++) for(let y=0; y<16; y++) {
-        if (Math.random() > 0.5) { ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.15})`; ctx.fillRect(x,y,1,1); }
+      for(let x=0; x<16; x++) for(let y=0; y<16; y++){
+        if (Math.random() > 0.5) { ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.15})`; ctx.fillRect(x,y,1,1);}
         else { ctx.fillStyle = `rgba(255,255,255,${Math.random() * 0.15})`; ctx.fillRect(x,y,1,1); }
       }
       if (type === "grass") {
