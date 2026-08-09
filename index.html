@@ -606,7 +606,7 @@
     let lastSpaceTime = 0;
     let canDoubleJump = false;
     const keys = {};
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', (e)=>{
       if (!controls.isLocked) return;
       keys[e.code] = true;
       if (e.code === 'Space' && !isDriving) {
